@@ -29,10 +29,9 @@
 </head>
 
 <body>
-  <p>Distance: <span id="distance">{Distance Value}</span></p>
-  <p>Temperature: <span id="temperature">{Temperature Value}</span></p>
-  <p>Humidity: <span id="humidity">{Humidity Value}</span></p>
-  <button onclick="updateData()">Update</button>
+  <p>Distance: <span id="distance">{Distance Value}</span> m</p>
+  <p>Temperature: <span id="temperature">{Temperature Value}</span> &deg;C</p>
+  <p>Humidity: <span id="humidity">{Humidity Value}</span> %</p>
   <script>
 
     const distance = document.querySelector("#distance")
@@ -43,12 +42,18 @@
       var xhttp = new XMLHttpRequest()
 
       xhttp.onload = function() {
-        console.log(this.response)
+        const data = JSON.parse(this.response)
+        distance.innerHTML = data.distance
+        temperature.innerHTML = data.temperature
+        humidity.innerHTML = data.humidity
+
       }
       xhttp.open("GET", "/data", true);
       xhttp.send()
       
     }
+
+    setInterval(updateData, 1000)
     
   </script>
 </body>

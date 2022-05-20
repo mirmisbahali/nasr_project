@@ -28,14 +28,7 @@ end
 
 -- called when measure is done
 function done_measuring()
-	if file.open("distance.txt", "w") then
-		-- print("Distance: "..string.format("%.3f", distance).." Readings: "..#readings)
-		file.write(distance .. [[
-
-		This file contains the Distance Measured from Ultrasonic Sensor
-		]])
-		file.close()
-	end
+	-- print("Distance: "..string.format("%.3f", distance).." Readings: "..#readings)
 	if CONTINUOUS then
 		node.task.post(measure)
 	end
