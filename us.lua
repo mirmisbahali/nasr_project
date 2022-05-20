@@ -28,7 +28,14 @@ end
 
 -- called when measure is done
 function done_measuring()
-	print("Distance: "..string.format("%.3f", distance).." Readings: "..#readings)
+	if file.open("distance.txt", "w") then
+		-- print("Distance: "..string.format("%.3f", distance).." Readings: "..#readings)
+		file.write(distance .. [[
+
+		This file contains the Distance Measured from Ultrasonic Sensor
+		]])
+		file.close()
+	end
 	if CONTINUOUS then
 		node.task.post(measure)
 	end
@@ -36,7 +43,6 @@ end
 
 -- distance calculation, called by the echo_callback function on falling edge.
 function calculate()
-
 	-- echo time (or high level time) in seconds
 	local echo_time = (time_stop - time_start) / 1000000
 
@@ -90,7 +96,7 @@ mytimer:register(READING_INTERVAL, tmr.ALARM_AUTO, trigger)
 
 -- set callback function to be called both on rising and falling edges
 gpio.trig(ECHO_PIN, "both", echo_callback)
-gpio.mode(0, gpio.OUTPUT)
-gpio.mode(4, gpio.OUTPUT)
-gpio.write(0, gpio.LOW)
-gpio.write(4, gpio.LOW)
+
+updateTimer = tmr.create()
+
+updateTimer:alarm(1000, tmr.ALARM_AUTO, measure)
