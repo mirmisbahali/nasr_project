@@ -1,5 +1,9 @@
 # Pipe Inspection Robot
 
+## Circuit Diagram
+
+![Circuit Diagram](circuit.png)
+
 ## Pin Connections
 
 ### Ultrasonic Sensor
