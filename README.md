@@ -51,4 +51,6 @@ Serial port can be found by right clicking on This PC > manage > Device Manager 
 ### ESPlorer
 [Click Here to Download](https://github.com/4refr0nt/ESPlorer/releases/download/v0.2.0/ESPlorer-0.2.0.zip)
 
+Upload `init.lua`, `application.lua`, `us.lua`, `_html.lua` using ESPlorer to NodeMCU
+
 
